@@ -1,4 +1,4 @@
-Marko Widgets: UI Components Playground w/ Vite
+InaGiphy
 ==================================
 
 ## Getting Started

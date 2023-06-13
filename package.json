@@ -3,10 +3,12 @@
   "description": "Sample app that demonstrates the power of building UI components using Marko, Vite, and Express",
   "version": "1.0.0",
   "dependencies": {
+    "@giphy/js-fetch-api": "^4.9.3",
     "@marko/express": "^2.1.0",
     "compression": "^1.7.4",
     "express": "^4.18.2",
     "marko": "^5.25.16",
+    "node-fetch": "^3.3.1",
     "raptor-pubsub": "^1.0.5"
   },
   "devDependencies": {

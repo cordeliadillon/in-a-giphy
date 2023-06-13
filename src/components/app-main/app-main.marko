@@ -1,0 +1,29 @@
+import { getGifs } from "../../services/giphy/load";
+
+class {
+  onInput(input) {
+    this.state = {
+      searchTerm: '',
+      results: [],
+      filters: []
+    }
+  }
+}
+
+style {
+  main {
+    padding: var(--spacing--m);
+  }
+
+  header {
+    height: '10000px';
+  }
+}
+
+<app-header title="InaGiphy">
+  <app-searchbar/>
+</app-header>
+<main>
+  <giphy-grid searchTerm='george'/>
+</main>
+<app-footer/>

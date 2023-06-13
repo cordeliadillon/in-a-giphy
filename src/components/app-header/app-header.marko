@@ -1,0 +1,39 @@
+style {
+  header {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--spacing--m);
+    height: 2rem;
+
+    background-color: var(--color-purple--dark);
+    
+  }
+
+  header > * {
+    flex-grow: 1;
+  }
+
+  /** Light theme overrides */
+  @media (prefers-color-scheme: light) {
+    header {
+      background-color: var(--color-purple--light);
+    }
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+
+    gap: .5rem;
+  }
+}
+
+<header>
+  <a.logo href="/">
+    <icon-logo/>
+    ${input.title}
+  </a>
+   <${input.renderBody}/>
+  <div></div>
+</header>

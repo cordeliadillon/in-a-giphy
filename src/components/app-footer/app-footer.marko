@@ -1,0 +1,54 @@
+$ const credits = [
+  {url: "https://icons8.com/", context: 'Icons from', linkText: 'Icons8'},
+  {url: "http://giphy.com", context: 'Powered by', linkText: 'Giphy'},
+  {url: "https://markojs.com/docs/installing/", context: 'Bootstrapped with', linkText: '@marko/create '},
+  {url: "https://github.com/cordeliadillon", context: 'Built by', linkText: 'cordeliadillon'}
+];
+
+style {
+  footer {
+    margin: var(--spacing--m);
+    border-top: 1px solid white;
+  }
+
+  footer .credits {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem;
+
+    font-size: 14px;
+  }
+
+  footer .divider {
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+  @media (max-width: 850px) {
+    footer .credits {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    footer .divider {
+      display: none;
+    }
+  }
+}
+
+<footer>
+  <p>
+    &copy; InaGiphy ${new Date().getFullYear()}
+  </p>
+  <p.credits>
+    <for|credit, index| of=credits>
+      <if(index !== 0)>
+        <span.divider aria-hidden="true">&middot;</span>
+      </if>
+        <span>
+          ${credit.context} <a href=credit.url>${credit.linkText}</a>
+      </span>
+    </for>
+  </p>
+</footer>

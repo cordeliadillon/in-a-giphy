@@ -1,0 +1,51 @@
+import { getGifs } from "../../services/giphy/load";
+
+style {
+  .grid {
+    display: grid;
+  }
+}
+
+class {
+    onInput(input) {
+        this.state = {
+            loading: false,
+            gifs: [],
+        }
+    }
+
+    onMount() {
+        this.pending = Promise.resolve();
+
+        if (this.state.gifs.length === 0) {
+            this.loadGifs();
+        }
+    }
+    
+    async loadGifs() {
+        const { state, input } = this;
+
+        state.loading = true;
+        await this.pending;
+
+        try {
+            const gifsData = await (this.pending = getGifs(input.searchTerm));
+            state.gifs = gifsData;
+        } catch (err) {
+            console.log('Fetch failed:', err);
+        }
+
+        state.loading = false;
+    }
+}
+
+<div>
+    <if(state.gifs.length > 0)>
+    <div.grid>
+    <for|gif| of=state.gifs>
+       <giphy-gif gif=gif/>
+    </for>
+
+    </div>
+    </if>
+</div>

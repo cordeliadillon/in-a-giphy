@@ -1,0 +1,60 @@
+/** Global Styles **/
+
+:root {
+  /* Spacing */
+  --spacing--s: 8px;
+  --spacing--m: 16px;
+  --spacing--l: 24px;
+
+  /** Colors **/
+  --color-purple--light: #CBBEFF;
+  --color-purple--medium: #502274;
+  --color-purple--dark: #2C1240;
+  --color-purple--deep: #0e0416;
+  --color-pink--light: #FFB5A3;
+  --color-header-bg: var(--color-purple--dark);
+
+  --border-color--light: #fff;
+
+
+  --border-radius--s: 4px;
+  --border-radius--m: 8px;
+  --border-radius--l: 16px;
+
+  --base-font-family: 'Nunito', 'Open Sans', 'Roboto', sans-serif;
+  --base-font-size: 16px;
+
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  
+  margin: 0 auto;
+  font-family: var(--base-font-family);
+  font-size: var(--base-font-size);
+  color: var(--color-pink--light);
+
+  background-color: var(--color-purple--deep);
+}
+
+a {
+  color: white;
+}
+
+svg {
+  fill: currentColor;
+  height: 100%;
+}
+
+/** Light theme overrides */
+@media (prefers-color-scheme: light) {
+  body {
+    color: var(--color-purple--dark);
+    background-color: var(--color-pink--light);
+  }
+
+  a {
+    color: black; 
+  }
+}
