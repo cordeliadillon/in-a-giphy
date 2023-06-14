@@ -3,7 +3,6 @@
   "description": "Sample app exploring Marko, Vite, Express, Giphy",
   "version": "1.0.0",
   "dependencies": {
-    "@giphy/js-fetch-api": "^4.9.3",
     "@marko/express": "^2.1.0",
     "compression": "^1.7.4",
     "copy-to-clipboard": "^3.3.3",
@@ -24,8 +23,6 @@
   "private": true,
   "scripts": {
     "build": "rimraf dist && npm run build:server && npm run build:client",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
     "build:client": "cross-env NODE_ENV=production vite build",
     "build:server": "cross-env NODE_ENV=production vite build --ssr src/index.js",
     "dev": "node --enable-source-maps index.js",
