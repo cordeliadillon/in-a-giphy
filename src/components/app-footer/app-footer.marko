@@ -1,14 +1,17 @@
 $ const credits = [
-  {url: "https://icons8.com/", context: 'Icons from', linkText: 'Icons8'},
+  {url: "https://fonts.google.com/icons", context: 'Icons by', linkText: 'Material'},
   {url: "http://giphy.com", context: 'Powered by', linkText: 'Giphy'},
-  {url: "https://markojs.com/docs/installing/", context: 'Bootstrapped with', linkText: '@marko/create '},
-  {url: "https://github.com/cordeliadillon", context: 'Built by', linkText: 'cordeliadillon'}
+  {url: "https://markojs.com/docs/", context: 'Built on', linkText: 'Marko'},
+  {url: "https://github.com/cordeliadillon", context: 'Made by', linkText: 'cordeliadillon'}
 ];
 
 style {
   footer {
     margin: var(--spacing--m);
-    border-top: 1px solid white;
+    padding: var(--spacing--l) 0 var(--spacing--m) 0;
+    border-top: 1px solid var(--border-color--dark);
+    text-align: center;
+    font-size: 14px;
   }
 
   footer .credits {
@@ -16,8 +19,6 @@ style {
     justify-content: center;
     align-items: center;
     gap: .5rem;
-
-    font-size: 14px;
   }
 
   footer .divider {
@@ -26,6 +27,10 @@ style {
   }
 
   @media (max-width: 850px) {
+    footer {
+      text-align: left;
+    }
+
     footer .credits {
       flex-direction: column;
       align-items: flex-start;
@@ -38,9 +43,7 @@ style {
 }
 
 <footer>
-  <p>
-    &copy; InaGiphy ${new Date().getFullYear()}
-  </p>
+  &copy; ${new Date().getFullYear()} In A Giphy 
   <p.credits>
     <for|credit, index| of=credits>
       <if(index !== 0)>

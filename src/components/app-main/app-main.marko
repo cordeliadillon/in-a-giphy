@@ -1,29 +1,40 @@
-import { getGifs } from "../../services/giphy/load";
-
 class {
   onInput(input) {
+
+    const currentHour = Number(new Date().toTimeString().substring(0, 2));
+    let defaultSearch = 'Good night';
+    if (currentHour < 4) {
+      defaultSearch = 'Go to bed';
+    } else if (currentHour < 12) {
+      defaultSearch = 'Good morning';
+    } else if (currentHour < 17) {
+      defaultSearch = 'Good afternoon';
+    } else if (currentHour < 22) {
+      defaultSearch = 'Good evening';
+    }
+
     this.state = {
-      searchTerm: '',
+      searchTerm: input.searchTerm || defaultSearch,
       results: [],
       filters: []
     }
+  }
+
+  handleSearch(searchTerm) {
+    this.state.searchTerm = searchTerm;
   }
 }
 
 style {
   main {
-    padding: var(--spacing--m);
-  }
-
-  header {
-    height: '10000px';
+    padding: var(--spacing--l);
   }
 }
 
-<app-header title="InaGiphy">
-  <app-searchbar/>
+<app-header title="In a Giphy">
+  <search-input on-submit-search("handleSearch")/>
 </app-header>
 <main>
-  <giphy-grid searchTerm='george'/>
+  <search-results searchTerm=state.searchTerm/>
 </main>
 <app-footer/>

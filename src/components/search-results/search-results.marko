@@ -1,0 +1,101 @@
+/**
+ * Future enhancements:
+ * - Filter by rating, relevancy, and other factors
+ * - Clean up text -- "26804 gifs" vs. "26k gifs"
+ * - Implement a proper masonry grid on desktop :O
+ */
+
+import { getGifs } from "../../services/giphy/load";
+
+style {
+  h1 span {
+    display: block;
+    font-size: var(--base-font-size);
+  }
+
+  .grid, .center {
+    padding: var(--spacing--s) 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  @media (max-width: 600px) {
+    .grid {
+      display: grid;
+      width: 100%;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+}
+
+class {
+  onInput(input) {
+    this.state = {
+      searchTerm: input.searchTerm,
+      loading: false,
+      pagination: {},
+      gifs: [],
+    }
+    this.pending = Promise.resolve();
+    this.loadInitialGifs();
+  }
+
+  async loadInitialGifs() {
+    const { state } = this;
+
+    state.loading = true;
+    await this.pending;
+
+    try {
+      const gifsResponse = await (this.pending = getGifs(state.searchTerm));
+      if (gifsResponse) {
+          state.gifs = gifsResponse.data;
+          state.pagination = gifsResponse.pagination;
+      }
+    } catch (err) {
+      console.log('Fetch failed:', err);
+    }
+
+    state.loading = false;
+  }
+
+  async loadMoreGifs() {
+    const { state } = this;
+
+    state.loading = true;
+    await this.pending;
+
+    try {
+      const gifsResponse = await (this.pending = getGifs(state.searchTerm, {offset: state.gifs.length}));
+      if (gifsResponse && gifsResponse.data) {
+        state.gifs = state.gifs.concat(gifsResponse.data);
+        state.pagination = gifsResponse.pagination;
+      }
+    } catch (err) {
+      console.log('Fetch failed:', err);
+    }
+
+    state.loading = false;
+  }
+}
+
+<h1>
+  <span>${state.pagination.total_count} gifs for</span>
+  ${input.searchTerm}
+</h1>
+<if(state.gifs.length > 0)>
+  <div.grid>
+    <for|gif| of=state.gifs>
+      <giphy-card gif=gif copyToClipboard />
+    </for>
+ </div>
+</if>
+<div.center>
+  <if(state.gifs.length < state.pagination.total_count)>
+    <button.button on-click("loadMoreGifs")>Load more</button>
+  </if>
+  <else>
+    <p>(Pssst... You reached the end of results for "${input.searchTerm}." Try searching for something else?)</p>
+  </else>
+</div>

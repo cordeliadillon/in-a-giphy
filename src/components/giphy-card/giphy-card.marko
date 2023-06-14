@@ -1,0 +1,76 @@
+/**
+ * Future enhancements:
+ * - Styled tooltips for icon buttons
+ * - Toast to confirm copy to clipboard was successful!
+ */
+ 
+import copy from 'copy-to-clipboard';
+
+style {
+  .gif-container {
+    position: relative;
+    display: inline-block;
+    height: 300px;
+    margin: var(--spacing--s);
+  }
+
+  .gif-container .button {
+    position: absolute;
+    top: .5rem;
+    left: .5rem;
+    background-color: var(--color-purple--deep);
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-color: var(--color-purple--dark);
+  }
+
+  .gif-container .button svg {
+    transform: rotate(-45deg);
+    width: 24px;
+    height: 24px;
+    padding: var(--spacing--s);
+  }
+
+  .gif-container img {
+    height: 100%;
+    border-radius: var(--border-radius--l);
+  }
+
+  @media (max-width: 600px) {
+    .gif-container {
+      display: flex;
+      height: unset;
+    }
+
+    .gif-container picture {
+      width: 100%;
+    }
+
+    .gif-container img {
+      width: 100%;
+      height: auto;
+    }
+  } 
+}
+
+$ const maxWidth = '500px';
+
+class {
+  copyLink() {
+    copy(this.input.gif.bitly_url);
+  }
+}
+
+<div.gif-container>
+  <picture>
+    <source media=`(prefers-reduced-motion) and (max-width: ${maxWidth})` srcset=input.gif.images.fixed_height_still.url />
+    <source media=`(max-width: ${maxWidth})` srcset=input.gif.images.fixed_height.url />
+    <source media=`(prefers-reduced-motion)` srcset=input.gif.images.original_still.url />
+    <img src=input.gif.images.original.url alt=input.gif.title/>
+  </picture>
+  <button.button aria-label=`Copy link${input.gif.title && ' to ' + input.gif.title}` title="Copy link" on-click("copyLink")>
+    <icon-link/>
+  </button>
+</div>
