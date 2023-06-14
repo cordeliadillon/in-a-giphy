@@ -1,5 +1,8 @@
-InaGiphy
+In A Giphy
 ==================================
+
+MVP web app for displaying Giphy search results,
+exploring the Marko framework
 
 ## Getting Started
 

@@ -1,0 +1,59 @@
+import { getGifById } from "../../services/giphy/load";
+
+style {
+  h1 span {
+    display: block;
+    font-size: var(--base-font-size);
+  }
+
+  .grid, .center {
+    padding: var(--spacing--s) 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  @media (max-width: 600px) {
+    .grid {
+      display: grid;
+      width: 100%;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+}
+
+class {
+  onInput(input) {
+    this.state = {
+      loading: false,
+      gif: undefined,
+    }
+    this.pending = Promise.resolve();
+    this.loadGif();
+  }
+
+  async loadGif() {
+    const { state } = this;
+
+    state.loading = true;
+    await this.pending;
+
+    try {
+      const gif = await (this.pending = getGifById('y65VoOlimZaus'));
+      if (gif) {
+          state.gif = gif;
+      }
+    } catch (err) {
+      console.log('Fetch failed:', err);
+    }
+
+    state.loading = false;
+  }
+}
+
+<div>
+  <if(state.gif)>
+    <giphy-card gif=state.gif />
+  </if>
+  <p>Sorry, couldn't find anything by that name!</p>
+</div>

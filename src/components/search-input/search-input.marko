@@ -24,38 +24,39 @@ style {
   .searchBar input, .searchBar button {
     font-size: 18px;
     font-family: var(--base-font-family);
-    border: var(--border-weight) solid var(--border-color--dark);
+    border: var(--border-weight) solid var(--border-color1);
+    color: var(--header-color);
   }
 
   .searchBar input {
     height: 3rem;
 
-    color: var(--color-link);
-    background-color: var(--color-purple-medium);
+    background-color: var(--app-bg);
     border-radius: var(--border-radius--round) 0 0 var(--border-radius--round);
 
     padding: var(--spacing--s) var(--spacing--m);
   }
 
   .searchBar input::placeholder {
-    color: var(--color-pink--light);
+    color: var(--focus-color);
+  }
+
+    /* Hide default clear button */
+  .searchBar input::-webkit-search-cancel-button {
+    -webkit-appearance: none;
   }
 
   .searchBar button {
     display: flex;
     align-items: stretch;
-    background-color: var(--color-purple--deep);
-    color: var(--color-link);
+    background-color: var(--app-bg);
 
     border-color: transparent;
     border-radius:  0 var(--border-radius--round) var(--border-radius--round) 0;
     padding: var(--spacing--s);
   }
 
-  /* Hide default clear button */
-  .searchBar button::-webkit-search-cancel-button {
-    -webkit-appearance: none;
-  }
+
 
   .searchBar svg {
     height: 2rem;

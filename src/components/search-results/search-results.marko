@@ -84,18 +84,24 @@ class {
   <span>${state.pagination.total_count} gifs for</span>
   ${input.searchTerm}
 </h1>
+<if(state.loading)>
+  Loading...
+</if>
+<else-if(state.gifs.length == 0)>
+  <search-empty/>
+</else-if>
 <if(state.gifs.length > 0)>
   <div.grid>
     <for|gif| of=state.gifs>
       <giphy-card gif=gif copyToClipboard />
     </for>
- </div>
+  </div>
+  <div.center>
+    <if(state.gifs.length < state.pagination.total_count)>
+      <button.button on-click("loadMoreGifs")>Load more</button>
+    </if>
+    <else>
+      <p>(Pssst... You reached the end of results for "${input.searchTerm}." Try searching for something else?)</p>
+    </else>
+  </div>
 </if>
-<div.center>
-  <if(state.gifs.length < state.pagination.total_count)>
-    <button.button on-click("loadMoreGifs")>Load more</button>
-  </if>
-  <else>
-    <p>(Pssst... You reached the end of results for "${input.searchTerm}." Try searching for something else?)</p>
-  </else>
-</div>

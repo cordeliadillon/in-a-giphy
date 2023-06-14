@@ -7,16 +7,12 @@
   --spacing--l: 24px;
 
   /** Colors **/
-  --color-link: #fff;
   --color-purple--light: #CBBEFF;
   --color-purple--medium: #502274;
   --color-purple--dark: #2C1240;
   --color-purple--deep: #0e0416;
   --color-pink--light: #FFB5A3;
-  --color-header-bg: var(--color-purple--dark);
 
-  --border-color--light: #fff;
-  --border-color--dark: var(--color-purple--medium);
   --border-weight: 2px;
   --border-radius--s: 4px;
   --border-radius--m: 8px;
@@ -26,7 +22,16 @@
   --base-font-family: 'Nunito', 'Open Sans', 'Roboto', sans-serif;
   --base-font-size: 16px;
 
-  --focus-box-shadow: 0px 0px 0px 2px var(--color-pink--light);
+  --focus-box-shadow: 0px 0px 0px 2px var(--focus-color);
+
+  --app-bg: var(--color-purple--deep);
+  --app-color: var(--color-pink--light);
+  --app-action-color: #fff;
+  --header-bg: var(--color-purple--dark);
+  --header-color: #fff;
+  --focus-color: var(--color-pink--light);
+  --border-color1: var(--color-purple--medium);
+  --border-color2: #fff;
 }
 
 * {
@@ -43,13 +48,13 @@ body {
  
   font-family: var(--base-font-family);
   font-size: var(--base-font-size);
-  color: var(--color-pink--light);
+  color: var(--app-color);
 
-  background-color: var(--color-purple--deep);
+  background-color: var(--app-bg);
 }
 
 a {
-  color: var(--color-link);
+  color: var(--app-action-color);
 }
 
 a:focus {
@@ -70,18 +75,18 @@ button {
   font-family: var(--base-font-family);
   font-weight: bold;
 
-  color: white;
+  color: var(--app-action-color);
   
   padding: var(--spacing--s) var(--spacing--m);
   
   background-color: transparent;
-  border: var(--border-weight) solid var(--border-color--light);
+  border: var(--border-weight) solid var(--border-color2);
   border-radius: var(--border-radius--round);
 
 }
 
 .button:hover, .button:focus-visible {
-  background-color: var(--color-purple--dark);
+  background-color: var(--header-bg);
 }
 
 .flex {
@@ -98,12 +103,14 @@ button {
 
 /** Light theme overrides */
 @media (prefers-color-scheme: light) {
-  body {
-    color: var(--color-purple--dark);
-    background-color: var(--color-pink--light);
-  }
-
-  a {
-    color: black; 
+  :root {
+    --app-bg: #f1effc;
+    --app-color: var(--color-purple--medium);
+    --app-action-color: var(--color-purple--deep);
+    --header-bg: var(--color-purple--light);
+    --header-color: var(--color-purple--dark);
+    --focus-color: var(--color-purple--medium);
+    --border-color1: var(--color-pink--light);
+    --border-color2: var(--color-purple--deep);
   }
 }

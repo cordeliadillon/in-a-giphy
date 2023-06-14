@@ -18,12 +18,12 @@ style {
     position: absolute;
     top: .5rem;
     left: .5rem;
-    background-color: var(--color-purple--deep);
+    background-color: var(--app-bg);
     padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-color: var(--color-purple--dark);
+    border-color: var(--border-color1);
   }
 
   .gif-container .button svg {
@@ -70,7 +70,9 @@ class {
     <source media=`(prefers-reduced-motion)` srcset=input.gif.images.original_still.url />
     <img src=input.gif.images.original.url alt=input.gif.title/>
   </picture>
-  <button.button aria-label=`Copy link${input.gif.title && ' to ' + input.gif.title}` title="Copy link" on-click("copyLink")>
-    <icon-link/>
-  </button>
+  <if(input.copyToClipboard)>
+    <button.button aria-label=`Copy link${input.gif.title && ' to ' + input.gif.title}` title="Copy link" on-click("copyLink")>
+      <icon-link/>
+    </button>
+  </if>
 </div>
