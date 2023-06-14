@@ -1,4 +1,4 @@
-In A Giphy
+In a Giphy
 ==================================
 
 MVP web app for displaying Giphy search results,

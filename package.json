@@ -1,5 +1,5 @@
 {
-  "name": "ina-giphy",
+  "name": "in-a-giphy",
   "description": "Sample app exploring Marko, Vite, Express, Giphy",
   "version": "1.0.0",
   "dependencies": {
